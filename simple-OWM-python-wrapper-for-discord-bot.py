@@ -1,8 +1,5 @@
 import requests
 import datetime
-import shelve
-#now = datetime.datetime.now()
-#print now.year, now.month, now.day, now.hour, now.minute, now.second
 
 
 #this class uses open weather map to retrieve info
