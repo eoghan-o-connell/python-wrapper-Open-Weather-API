@@ -1,5 +1,8 @@
 import requests
 import datetime
+import shelve
+import ast
+
 
 
 #this class uses open weather map to retrieve info
@@ -80,7 +83,7 @@ class WeatherUpdate(object):
 
         #if we already have the city stored and dont want to have to re send a request
 
-        city = self._citiesAsked["location"]
+        city = self._citiesAsked[location][0]
 
         self._mainWeather = city["weather"][0]["main"]
         self._mainWeatherDesc = city["weather"][0]["description"]
@@ -95,7 +98,8 @@ class WeatherUpdate(object):
 
         print("updating")
         request = requests.get('https://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s'% (location,self._apiKey))
-        dictionary = request.text
+        dictionary = ast.literal_eval(request.text)
+
         time = self._time
         self._citiesAsked[location]=[dictionary,time]
 
@@ -109,8 +113,11 @@ class WeatherUpdate(object):
 
 
 if __name__ == '__main__':
-    w  = WeatherUpdate("SOME KEY")
-    print(w.getTemperature("Cork"))
+
+    w = WeatherUpdate("API KEY")
     print(w.getWeatherStatus("Cork"))
-    print(w._time)
     print(w.getWeatherStatusDetail("Cork"))
+    print(w.getWeatherStatus("Dublin"))
+    print(w.getWeatherStatus("Cork"))
+    print(w.getTemperature("Israel"))
+    print(w.getWeatherStatusDetail("Dublin"))
