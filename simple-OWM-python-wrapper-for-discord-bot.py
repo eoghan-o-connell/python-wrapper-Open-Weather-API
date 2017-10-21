@@ -25,21 +25,18 @@ class WeatherUpdate(object):
     def getTemperature(self,location):
 
         self.timeToUpdate(location)
-        self._location = location
 
         return self._temperature
 
     def getWeatherStatus(self,location):
 
         self.timeToUpdate(location)
-        self._location = location
 
         return self._mainWeather
 
     def getWeatherStatusDetail(self,location):
 
         self.timeToUpdate(location)
-        self._location = location
 
         return self._mainWeatherDesc
 
