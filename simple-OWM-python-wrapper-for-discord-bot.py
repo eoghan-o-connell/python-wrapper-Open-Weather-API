@@ -5,7 +5,7 @@ import ast
 
 
 
-#this class uses open weather map to retrieve info
+#this class uses open weather maps API
 
 class WeatherUpdate(object):
 
