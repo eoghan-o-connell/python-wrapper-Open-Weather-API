@@ -88,7 +88,8 @@ class WeatherUpdate(object):
     def processFreshRequest(self,location):
 
         print("updating")
-        request = requests.get('https://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s'% (location,self._apiKey))
+        request = requests.get('https://api.openweathermap.org/data/2.5/weather?q=%s&type=accurate&APPID=%s'% (location,self._apiKey))
+
         if request.status_code==200:
 
             dictionary = ast.literal_eval(request.text)
@@ -96,6 +97,9 @@ class WeatherUpdate(object):
             time = self._time
             self._citiesAsked[location]=[dictionary,time]
             self.updateFields(dictionary,location)
+
+        else:
+            raise AttributeError("Invalid country/city (name/substring)")
 
 if __name__ == '__main__':
 
