@@ -28,32 +28,31 @@ class WeatherUpdate(object):
 
         self.timeToUpdate(location)
 
-        return self._temperature
+        return location + ": " + self._temperature + " degrees celcius"
 
     def getWeatherStatus(self,location):
 
         self.timeToUpdate(location)
 
-        return self._mainWeather
+        return location + ": " + self._mainWeather
 
     def getWeatherStatusDetail(self,location):
 
         self.timeToUpdate(location)
 
-        return self._mainWeatherDesc
+        return location + ": " + self._mainWeatherDesc
 
     def getWindSpeed(self,location):
         self.timeToUpdate(location)
 
-        return str(self._windSpeed)+" km/ph"
+        return location + ": " + str(self._windSpeed)+" km/ph"
 
     def getHumidity(self,location):
 
-        return str(self._humidity)+"%"
+        return location + ": " + str(self._humidity)+"%"
 
 
     def timeToUpdate(self,location):
-
         currenthour = datetime.datetime.now().hour
         hoursBetweenLastUpdate = currenthour - self._time
         cityPrevAsked = location in self._citiesAsked
@@ -71,6 +70,7 @@ class WeatherUpdate(object):
                 city = self._citiesAsked[location][0]
                 self.updateFields(city,location) #already have the fresh info for that city so no need to re send a request
             else:
+                print("its time to update?")
                 self._time = currenthour #it is time to update so we update or time because that will be the time we most recently updated
                 self.processFreshRequest(location)
 
@@ -78,6 +78,7 @@ class WeatherUpdate(object):
             print("we havent seen this before")
             self._time = currenthour
             self.processFreshRequest(location)
+
 
 
 
@@ -112,7 +113,7 @@ class WeatherUpdate(object):
             self.updateFields(dictionary,location)
 
         else:
-            raise AttributeError("Invalid country/city (name/substring)")
+            raise AttributeError("Invalid country/city (name/substring)") #AttributeError as we cannot update our fields with incorrect location data, as we get an Error 404
 
 if __name__ == '__main__':
 
