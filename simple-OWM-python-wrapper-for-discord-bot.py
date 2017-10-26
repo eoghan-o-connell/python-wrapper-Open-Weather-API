@@ -13,10 +13,12 @@ class WeatherUpdate(object):
 
         self._apiKey = apiKey
         self._citiesAsked = {}
+        self._time = 0
+        self._windSpeed = None
+        self._humidity = None
         self._temperature = None
         self._mainWeather = None
         self._mainWeatherDesc = None
-        self._time = 0
         self._location = None
 
 
@@ -39,6 +41,15 @@ class WeatherUpdate(object):
         self.timeToUpdate(location)
 
         return self._mainWeatherDesc
+
+    def getWindSpeed(self,location):
+        self.timeToUpdate(location)
+
+        return str(self._windSpeed)+" km/ph"
+
+    def getHumidity(self,location):
+
+        return str(self._humidity)+"%"
 
 
     def timeToUpdate(self,location):
@@ -78,7 +89,9 @@ class WeatherUpdate(object):
         #if we already have the city stored and dont want to have to re send a request
         self._mainWeather = dictionary["weather"][0]["main"]
         self._mainWeatherDesc = dictionary["weather"][0]["description"]
-        self._temperature =  "%.2f" % (dictionary["main"]["temp_max"] - 273.15)
+        self._temperature =  "%.2f" % (dictionary["main"]["temp_max"] - 273.15) #KELVIN TO CELCIUS
+        self._humidity = dictionary["main"]["humidity"]
+        self._windSpeed = "%.2f" % (dictionary["wind"]["speed"] *3.6) #MPS -> KMPH
         self._location  = location
 
 
