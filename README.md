@@ -1,6 +1,25 @@
 # Weather-Class
-A simple class to send a HTTP request to Open Weather Map and to process the information
-This is in very early stages and is currently being tested for bugs, and will also become more efficient as the bugs are taken out.
-This is also going to be used for my first discord bot to get weather updates, but can be used as a normal simple python wrapper for Open Weather Maps API
 
-I will also implement more methods to retrieve further information about the weather 
+Simple python API wrapper for the openweathermap API.
+
+This API wrapper only asks the openweathermap API for information when
+absolutely essential, making its requesting efficient, as redundant requests
+are not made.
+
+-----------------------------------------------------------------------------
+
+Weather Information this Weather API handles.
+For a given location:
+
+
+1)Temperature in degrees celcius.
+
+2)Weather in basic form, ie cloudy, raining.
+
+3)Weather in a little more detail, ie light mist, heavy rain.
+
+4)Wind speed in KMPH.
+
+5)Humidity in %.
+
+6)Cloud coverage in %.
