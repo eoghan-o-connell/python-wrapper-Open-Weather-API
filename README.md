@@ -8,7 +8,7 @@ are not made.
 
 -----------------------------------------------------------------------------
 
-Weather Information this Weather API handles.
+Weather Information this wrapper handles.
 For a given location:
 
 
