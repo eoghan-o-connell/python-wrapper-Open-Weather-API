@@ -1,4 +1,4 @@
-# Weather-Class
+# Open Weather Api Python Wrapper
 
 Simple python API wrapper for the openweathermap API.
 
