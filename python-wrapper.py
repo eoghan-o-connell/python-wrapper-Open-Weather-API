@@ -149,7 +149,7 @@ class WeatherUpdate(object):
 
 if __name__ == '__main__':
 
-    w = WeatherUpdate("6b366290283f7986ea062f324197a64c")
+    w = WeatherUpdate("API KEY")
     print(w.getWeatherStatus("Cork"))
     print(w.getWeatherStatusDetail("Cork"))
     print(w.getWeatherStatus("Dublin"))
