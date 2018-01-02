@@ -13,8 +13,6 @@ class WeatherUpdate(object):
         self._apiKey = apiKey
         self._citiesAsked = {}
         self._timeStamp = None
-        self._location = None
-
 
 
     def getTemperature(self,location):
